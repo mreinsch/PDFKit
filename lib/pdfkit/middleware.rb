@@ -19,10 +19,10 @@ class PDFKit
         body = response.respond_to?(:body) ? response.body : response.join
         body = body.join if body.is_a?(Array)
         body = translate_paths(body, env)
-        if defined? Rails
-          Rails.logger.info("converting to PDF:")
-          Rails.logger.info(body)
-        end
+
+        puts("converting to PDF:")
+        puts(body)
+
         body = PDFKit.new(body, @options).to_pdf
         response = [body]
 
